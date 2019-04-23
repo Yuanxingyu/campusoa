@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.stary.campusoa.business.dao.ZyKcDao">
+
+	<select id="get" resultType="org.stary.campusoa.business.domain.ZyKcDO">
+		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`zyid`,`jxjhid`,`kkxq`,`rkjsid`,`sksjd`,`skdd` from t_zy_kc where tid = #{value}
+	</select>
+
+	<select id="list" resultType="org.stary.campusoa.business.domain.ZyKcDO">
+		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`zyid`,`jxjhid`,`kkxq`,`rkjsid`,`sksjd`,`skdd` from t_zy_kc
+        <where>  
+		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
+		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
+		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
+		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
+		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
+		  		  <if test="zyid != null and zyid != ''"> and zyid = #{zyid} </if>
+		  		  <if test="jxjhid != null and jxjhid != ''"> and jxjhid = #{jxjhid} </if>
+		  		  <if test="kkxq != null and kkxq != ''"> and kkxq = #{kkxq} </if>
+		  		  <if test="rkjsid != null and rkjsid != ''"> and rkjsid = #{rkjsid} </if>
+		  		  <if test="sksjd != null and sksjd != ''"> and sksjd = #{sksjd} </if>
+		  		  <if test="skdd != null and skdd != ''"> and skdd = #{skdd} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by tid desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_zy_kc
+		 <where>  
+		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
+		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
+		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
+		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
+		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
+		  		  <if test="zyid != null and zyid != ''"> and zyid = #{zyid} </if>
+		  		  <if test="jxjhid != null and jxjhid != ''"> and jxjhid = #{jxjhid} </if>
+		  		  <if test="kkxq != null and kkxq != ''"> and kkxq = #{kkxq} </if>
+		  		  <if test="rkjsid != null and rkjsid != ''"> and rkjsid = #{rkjsid} </if>
+		  		  <if test="sksjd != null and sksjd != ''"> and sksjd = #{sksjd} </if>
+		  		  <if test="skdd != null and skdd != ''"> and skdd = #{skdd} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="org.stary.campusoa.business.domain.ZyKcDO" useGeneratedKeys="true" keyProperty="tid">
+		insert into t_zy_kc
+		(
+			`insertBy`, 
+			`updateBy`, 
+			`insertTime`, 
+			`updateTime`, 
+			`logicaldeletecode`, 
+			`zyid`, 
+			`jxjhid`, 
+			`kkxq`, 
+			`rkjsid`, 
+			`sksjd`, 
+			`skdd`
+		)
+		values
+		(
+			#{insertby}, 
+			#{updateby}, 
+			#{inserttime}, 
+			#{updatetime}, 
+			#{logicaldeletecode}, 
+			#{zyid}, 
+			#{jxjhid}, 
+			#{kkxq}, 
+			#{rkjsid}, 
+			#{sksjd}, 
+			#{skdd}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="org.stary.campusoa.business.domain.ZyKcDO">
+		update t_zy_kc 
+		<set>
+			<if test="insertby != null">`insertBy` = #{insertby}, </if>
+			<if test="updateby != null">`updateBy` = #{updateby}, </if>
+			<if test="inserttime != null">`insertTime` = #{inserttime}, </if>
+			<if test="updatetime != null">`updateTime` = #{updatetime}, </if>
+			<if test="logicaldeletecode != null">`logicaldeletecode` = #{logicaldeletecode}, </if>
+			<if test="zyid != null">`zyid` = #{zyid}, </if>
+			<if test="jxjhid != null">`jxjhid` = #{jxjhid}, </if>
+			<if test="kkxq != null">`kkxq` = #{kkxq}, </if>
+			<if test="rkjsid != null">`rkjsid` = #{rkjsid}, </if>
+			<if test="sksjd != null">`sksjd` = #{sksjd}, </if>
+			<if test="skdd != null">`skdd` = #{skdd}</if>
+		</set>
+		where tid = #{tid}
+	</update>
+	
+	<delete id="remove">
+		delete from t_zy_kc where tid = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_zy_kc where tid in 
+		<foreach item="tid" collection="array" open="(" separator="," close=")">
+			#{tid}
+		</foreach>
+	</delete>
+
+</mapper>

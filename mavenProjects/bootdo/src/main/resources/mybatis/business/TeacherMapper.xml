@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.stary.campusoa.business.dao.TeacherDao">
+
+	<select id="get" resultType="org.stary.campusoa.business.domain.TeacherDO">
+		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`userid`,`jsname`,`jgh`,`ssxyid`,`zc`,`zygz` from t_teacher where tid = #{value}
+	</select>
+
+	<select id="list" resultType="org.stary.campusoa.business.domain.TeacherDO">
+		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`userid`,`jsname`,`jgh`,`ssxyid`,`zc`,`zygz` from t_teacher
+        <where>  
+		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
+		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
+		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
+		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
+		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="jsname != null and jsname != ''"> and jsname = #{jsname} </if>
+		  		  <if test="jgh != null and jgh != ''"> and jgh = #{jgh} </if>
+		  		  <if test="ssxyid != null and ssxyid != ''"> and ssxyid = #{ssxyid} </if>
+		  		  <if test="zc != null and zc != ''"> and zc = #{zc} </if>
+		  		  <if test="zygz != null and zygz != ''"> and zygz = #{zygz} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by tid desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_teacher
+		 <where>  
+		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
+		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
+		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
+		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
+		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
+		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
+		  		  <if test="userid != null and userid != ''"> and userid = #{userid} </if>
+		  		  <if test="jsname != null and jsname != ''"> and jsname = #{jsname} </if>
+		  		  <if test="jgh != null and jgh != ''"> and jgh = #{jgh} </if>
+		  		  <if test="ssxyid != null and ssxyid != ''"> and ssxyid = #{ssxyid} </if>
+		  		  <if test="zc != null and zc != ''"> and zc = #{zc} </if>
+		  		  <if test="zygz != null and zygz != ''"> and zygz = #{zygz} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="org.stary.campusoa.business.domain.TeacherDO" useGeneratedKeys="true" keyProperty="tid">
+		insert into t_teacher
+		(
+			`insertBy`, 
+			`updateBy`, 
+			`insertTime`, 
+			`updateTime`, 
+			`logicaldeletecode`, 
+			`userid`, 
+			`jsname`, 
+			`jgh`, 
+			`ssxyid`, 
+			`zc`, 
+			`zygz`
+		)
+		values
+		(
+			#{insertby}, 
+			#{updateby}, 
+			#{inserttime}, 
+			#{updatetime}, 
+			#{logicaldeletecode}, 
+			#{userid}, 
+			#{jsname}, 
+			#{jgh}, 
+			#{ssxyid}, 
+			#{zc}, 
+			#{zygz}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="org.stary.campusoa.business.domain.TeacherDO">
+		update t_teacher 
+		<set>
+			<if test="insertby != null">`insertBy` = #{insertby}, </if>
+			<if test="updateby != null">`updateBy` = #{updateby}, </if>
+			<if test="inserttime != null">`insertTime` = #{inserttime}, </if>
+			<if test="updatetime != null">`updateTime` = #{updatetime}, </if>
+			<if test="logicaldeletecode != null">`logicaldeletecode` = #{logicaldeletecode}, </if>
+			<if test="userid != null">`userid` = #{userid}, </if>
+			<if test="jsname != null">`jsname` = #{jsname}, </if>
+			<if test="jgh != null">`jgh` = #{jgh}, </if>
+			<if test="ssxyid != null">`ssxyid` = #{ssxyid}, </if>
+			<if test="zc != null">`zc` = #{zc}, </if>
+			<if test="zygz != null">`zygz` = #{zygz}</if>
+		</set>
+		where tid = #{tid}
+	</update>
+	
+	<delete id="remove">
+		delete from t_teacher where tid = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_teacher where tid in 
+		<foreach item="tid" collection="array" open="(" separator="," close=")">
+			#{tid}
+		</foreach>
+	</delete>
+
+</mapper>
