@@ -113,5 +113,14 @@ public class XyController {
 		xyService.batchRemove(tids);
 		return R.ok();
 	}
-	
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:xy:add")
+	public List<XyDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return xyService.list(params);
+	}
 }

@@ -56,7 +56,7 @@ function load() {
 									title : '专业名称' 
 								},
 																{
-									field : 'ssxyid', 
+									field : 'ssxy',
 									title : '所属学院' 
 								},
 																{

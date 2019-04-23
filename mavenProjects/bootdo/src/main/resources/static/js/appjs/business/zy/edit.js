@@ -1,11 +1,12 @@
 $().ready(function() {
-	validateRule();
+    loadType();
+    validateRule();
 });
 
 $.validator.setDefaults({
-	submitHandler : function() {
-		update();
-	}
+    submitHandler : function() {
+        save();
+    }
 });
 
 function update() {
@@ -47,4 +48,32 @@ function validateRule() {
 			}
 		}
 	})
+}
+
+function loadType(){
+    var html = "";
+    $.ajax({
+        url : '/business/xy/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].xymc + '</option>'
+            }
+            $(".chosen-select").append(html);
+            $(".chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
 }

@@ -8,24 +8,19 @@
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.ZyDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`zymc`,`ssxyid`,`zydm` from t_zy
-        <where>  
-		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
-		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
-		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
-		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
-		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
-		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
-		  		  <if test="zymc != null and zymc != ''"> and zymc = #{zymc} </if>
-		  		  <if test="ssxyid != null and ssxyid != ''"> and ssxyid = #{ssxyid} </if>
-		  		  <if test="zydm != null and zydm != ''"> and zydm = #{zydm} </if>
+		select zy.`tid`,zy.`zymc`,zy.`ssxyid`,zy.`zydm`,xy.xymc as ssxy from t_zy zy left join t_xy xy on zy.ssxyid=xy.tid
+        <where>
+		  		  <if test="tid != null and tid != ''"> and zy.tid = #{tid} </if>
+		  		  <if test="zymc != null and zymc != ''"> and zy.zymc = #{zymc} </if>
+		  		  <if test="ssxyid != null and ssxyid != ''"> and zy.ssxyid = #{ssxyid} </if>
+		  		  <if test="zydm != null and zydm != ''"> and zy.zydm = #{zydm} </if>
 		  		</where>
         <choose>
             <when test="sort != null and sort.trim() != ''">
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by tid desc
+                order by zy.tid desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

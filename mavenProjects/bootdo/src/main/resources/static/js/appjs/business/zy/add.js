@@ -1,49 +1,13 @@
-var menuIds;
 $().ready(function() {
-    getXyTreeData();
+	loadType();
 	validateRule();
 });
 
 $.validator.setDefaults({
 	submitHandler : function() {
-        getAllSelectNodes();
 		save();
 	}
 });
-
-function getAllSelectNodes() {
-    var ref = $('#xyTree').jstree(true); // 获得整个树
-
-    menuIds = ref.get_selected(); // 获得所有选中节点的，返回值为数组
-
-    $("#xyTree").find(".jstree-undetermined").each(function(i, element) {
-        menuIds.push($(element).closest('.jstree-node').attr("tid"));
-    });
-}
-
-function getXyTreeData() {
-    $.ajax({
-        type : "GET",
-        url : "/xy/menu/tree",
-        success : function(menuTree) {
-            loadMenuTree(menuTree);
-        }
-    });
-}
-
-function loadMenuTree(xyTree) {
-    $('#xyTree').jstree({
-        'core' : {
-            'data' : xyTree
-        },
-        "checkbox" : {
-            "three_state" : true,
-        },
-        "plugins" : [ "wholerow", "checkbox" ]
-    });
-    //$('#menuTree').jstree("open_all");
-
-}
 function save() {
 	$.ajax({
 		cache : true,
@@ -69,6 +33,7 @@ function save() {
 	});
 
 }
+
 function validateRule() {
 	var icon = "<i class='fa fa-times-circle'></i> ";
 	$("#signupForm").validate({
@@ -83,4 +48,32 @@ function validateRule() {
 			}
 		}
 	})
+}
+
+function loadType(){
+    var html = "";
+    $.ajax({
+        url : '/business/xy/queryByproperties',
+		data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].xymc + '</option>'
+            }
+            $(".chosen-select").append(html);
+            $(".chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
 }

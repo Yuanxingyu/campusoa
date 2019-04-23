@@ -34,6 +34,16 @@ public class ZyDO implements Serializable {
 	//专业代码（人员设置的可见的专业识别码）
 	private String zydm;
 
+	private String ssxy;
+
+	public String getSsxy() {
+		return ssxy;
+	}
+
+	public void setSsxy(String ssxy) {
+		this.ssxy = ssxy;
+	}
+
 	/**
 	 * 设置：唯一标识id
 	 */
