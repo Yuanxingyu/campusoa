@@ -49,27 +49,7 @@ function load() {
 								},
 																{
 									field : 'tid', 
-									title : '唯一标识id' 
-								},
-																{
-									field : 'insertby', 
-									title : '创建者' 
-								},
-																{
-									field : 'updateby', 
-									title : '修发者' 
-								},
-																{
-									field : 'inserttime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updatetime', 
-									title : '修改时间' 
-								},
-																{
-									field : 'logicaldeletecode', 
-									title : '逻辑删除：0存在，1删除' 
+									title : '编号'
 								},
 																{
 									field : 'kcmc', 
@@ -89,7 +69,7 @@ function load() {
 								},
 																{
 									field : 'xqxs', 
-									title : '学时（单位可能是或者）'
+									title : '学时'
 								},
 																{
 									field : 'jkxs', 
@@ -97,15 +77,15 @@ function load() {
 								},
 																{
 									field : 'syxs', 
-									title : '实验学时（syxs+jkxs=xqxs）' 
+									title : '实验学时'
 								},
 																{
-									field : 'kkxy', 
+									field : 'kkxymc',
 									title : '开课学院' 
 								},
 																{
 									field : 'kcdm', 
-									title : '课程代码（人员设定的可见的课程识别码）' 
+									title : '课程代码'
 								},
 																{
 									title : '操作',

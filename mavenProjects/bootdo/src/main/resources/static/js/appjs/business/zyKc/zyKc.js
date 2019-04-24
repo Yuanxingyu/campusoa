@@ -49,35 +49,15 @@ function load() {
 								},
 																{
 									field : 'tid', 
-									title : '唯一标识id' 
+									title : '编号'
 								},
 																{
-									field : 'insertby', 
-									title : '创建者' 
-								},
-																{
-									field : 'updateby', 
-									title : '修发者' 
-								},
-																{
-									field : 'inserttime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updatetime', 
-									title : '修改时间' 
-								},
-																{
-									field : 'logicaldeletecode', 
-									title : '逻辑删除：0存在，1删除' 
-								},
-																{
-									field : 'zyid', 
-									title : '专业id' 
+									field : 'zy',
+									title : '专业'
 								},
 																{
 									field : 'jxjhid', 
-									title : '课程id' 
+									title : '课程'
 								},
 																{
 									field : 'kkxq', 

@@ -30,9 +30,9 @@ public class JxjhDO implements Serializable {
 	//课程名称
 	private String kcmc;
 	//课程类别
-	private Integer kclb;
+	private String kclb;
 	//课程性质
-	private Integer kcxz;
+	private String kcxz;
 	//学分
 	private Integer xf;
 	//学时（单位可能是'时'或者'周'）
@@ -45,6 +45,16 @@ public class JxjhDO implements Serializable {
 	private Integer kkxy;
 	//课程代码（人员设定的可见的课程识别码）
 	private String kcdm;
+
+	private String kkxymc;
+
+	public String getKkxymc() {
+		return kkxymc;
+	}
+
+	public void setKkxymc(String kkxymc) {
+		this.kkxymc = kkxymc;
+	}
 
 	/**
 	 * 设置：唯一标识id
@@ -133,25 +143,25 @@ public class JxjhDO implements Serializable {
 	/**
 	 * 设置：课程类别
 	 */
-	public void setKclb(Integer kclb) {
+	public void setKclb(String kclb) {
 		this.kclb = kclb;
 	}
 	/**
 	 * 获取：课程类别
 	 */
-	public Integer getKclb() {
+	public String getKclb() {
 		return kclb;
 	}
 	/**
 	 * 设置：课程性质
 	 */
-	public void setKcxz(Integer kcxz) {
+	public void setKcxz(String kcxz) {
 		this.kcxz = kcxz;
 	}
 	/**
 	 * 获取：课程性质
 	 */
-	public Integer getKcxz() {
+	public String getKcxz() {
 		return kcxz;
 	}
 	/**
