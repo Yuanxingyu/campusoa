@@ -35,6 +35,36 @@ public class BjDO implements Serializable {
 	private String bjmc;
 	//学期
 	private Integer xq;
+	//班级代码
+	private String bjdm;
+
+	private String ssxy;
+
+	private String sszy;
+
+	public String getBjdm() {
+		return bjdm;
+	}
+
+	public void setBjdm(String bjdm) {
+		this.bjdm = bjdm;
+	}
+
+	public String getSszy() {
+		return sszy;
+	}
+
+	public void setSszy(String sszy) {
+		this.sszy = sszy;
+	}
+
+	public String getSsxy() {
+		return ssxy;
+	}
+
+	public void setSsxy(String ssxy) {
+		this.ssxy = ssxy;
+	}
 
 	/**
 	 * 设置：表内唯一标识id

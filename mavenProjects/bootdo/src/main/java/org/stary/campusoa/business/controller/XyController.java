@@ -119,7 +119,7 @@ public class XyController {
 	 */
 	@GetMapping( "/queryByproperties")
 	@ResponseBody
-	@RequiresPermissions("business:xy:add")
+	@RequiresPermissions("business:xy:xy")
 	public List<XyDO> queryByproperties(@RequestParam Map<String, Object> params){
 		return xyService.list(params);
 	}

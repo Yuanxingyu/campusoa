@@ -49,40 +49,23 @@ function load() {
 								},
 																{
 									field : 'tid', 
-									title : '表内唯一标识id' 
+									title : '编号'
 								},
 																{
-									field : 'insertby', 
-									title : '创建者' 
+									field : 'ssxy',
+									title : '所属学院'
 								},
 																{
-									field : 'updateby', 
-									title : '修发者' 
-								},
-																{
-									field : 'inserttime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updatetime', 
-									title : '修改时间' 
-								},
-																{
-									field : 'logicaldeletecode', 
-									title : '逻辑删除：0存在，1删除' 
-								},
-																{
-									field : 'ssxyid', 
-									title : '所属学院id' 
-								},
-																{
-									field : 'sszyid', 
-									title : '所属专业id' 
+									field : 'sszy',
+									title : '所属专业'
 								},
 																{
 									field : 'bjmc', 
 									title : '班级名称' 
-								},
+								},  {
+                                    field : 'bjdm',
+                                    title : '班级代码'
+                            },
 																{
 									field : 'xq', 
 									title : '学期' 

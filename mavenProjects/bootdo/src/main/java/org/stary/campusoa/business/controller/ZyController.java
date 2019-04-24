@@ -113,5 +113,15 @@ public class ZyController {
 		zyService.batchRemove(tids);
 		return R.ok();
 	}
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:zy:zy")
+	public List<ZyDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return zyService.list(params);
+	}
 	
 }

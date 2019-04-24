@@ -4,18 +4,13 @@
 <mapper namespace="org.stary.campusoa.business.dao.BjDao">
 
 	<select id="get" resultType="org.stary.campusoa.business.domain.BjDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`ssxyid`,`sszyid`,`bjmc`,`xq` from t_bj where tid = #{value}
+		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`ssxyid`,`sszyid`,`bjmc`,`bjdm`,`xq` from t_bj where tid = #{value}
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.BjDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`ssxyid`,`sszyid`,`bjmc`,`xq` from t_bj
-        <where>  
+		select bj.`tid`,bj.`ssxyid`,bj.`sszyid`,bj.`bjmc`,bj.`bjdm`,bj.`xq`,xy.xymc as ssxy,zy.zymc as sszy from t_bj bj left join t_xy xy on xy.tid=bj.ssxyid left join t_zy zy on zy.tid=bj.sszyid
+        <where>
 		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
-		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
-		  		  <if test="updateby != null and updateby != ''"> and updateBy = #{updateby} </if>
-		  		  <if test="inserttime != null and inserttime != ''"> and insertTime = #{inserttime} </if>
-		  		  <if test="updatetime != null and updatetime != ''"> and updateTime = #{updatetime} </if>
-		  		  <if test="logicaldeletecode != null and logicaldeletecode != ''"> and logicaldeletecode = #{logicaldeletecode} </if>
 		  		  <if test="ssxyid != null and ssxyid != ''"> and ssxyid = #{ssxyid} </if>
 		  		  <if test="sszyid != null and sszyid != ''"> and sszyid = #{sszyid} </if>
 		  		  <if test="bjmc != null and bjmc != ''"> and bjmc = #{bjmc} </if>
@@ -60,7 +55,8 @@
 			`logicaldeletecode`, 
 			`ssxyid`, 
 			`sszyid`, 
-			`bjmc`, 
+			`bjmc`,
+			`bjdm`,
 			`xq`
 		)
 		values
@@ -73,6 +69,7 @@
 			#{ssxyid}, 
 			#{sszyid}, 
 			#{bjmc}, 
+			#{bjdm},
 			#{xq}
 		)
 	</insert>
@@ -88,6 +85,7 @@
 			<if test="ssxyid != null">`ssxyid` = #{ssxyid}, </if>
 			<if test="sszyid != null">`sszyid` = #{sszyid}, </if>
 			<if test="bjmc != null">`bjmc` = #{bjmc}, </if>
+			<if test="bjdm != null">`bjdm` = #{bjdm}, </if>
 			<if test="xq != null">`xq` = #{xq}</if>
 		</set>
 		where tid = #{tid}
