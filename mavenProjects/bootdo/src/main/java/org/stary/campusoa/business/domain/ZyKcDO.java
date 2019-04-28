@@ -36,9 +36,9 @@ public class ZyKcDO implements Serializable {
 	//任课教师id
 	private Integer rkjsid;
 	//上课时间段（1、8:00-9:40,2、10:10-11:50，3、13:30-15:10,4、15:40-17:20,5、18:30-20:10）
-	private Integer sksjd;
+	private String sksjd;
 	//上课地点（数据字典维护）
-	private Integer skdd;
+	private String skdd;
 
 	/**
 	 * 设置：唯一标识id
@@ -163,25 +163,25 @@ public class ZyKcDO implements Serializable {
 	/**
 	 * 设置：上课时间段（1、8:00-9:40,2、10:10-11:50，3、13:30-15:10,4、15:40-17:20,5、18:30-20:10）
 	 */
-	public void setSksjd(Integer sksjd) {
+	public void setSksjd(String sksjd) {
 		this.sksjd = sksjd;
 	}
 	/**
 	 * 获取：上课时间段（1、8:00-9:40,2、10:10-11:50，3、13:30-15:10,4、15:40-17:20,5、18:30-20:10）
 	 */
-	public Integer getSksjd() {
+	public String getSksjd() {
 		return sksjd;
 	}
 	/**
 	 * 设置：上课地点（数据字典维护）
 	 */
-	public void setSkdd(Integer skdd) {
+	public void setSkdd(String skdd) {
 		this.skdd = skdd;
 	}
 	/**
 	 * 获取：上课地点（数据字典维护）
 	 */
-	public Integer getSkdd() {
+	public String getSkdd() {
 		return skdd;
 	}
 }

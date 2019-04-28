@@ -49,31 +49,7 @@ function load() {
 								},
 																{
 									field : 'tid', 
-									title : '唯一标识id' 
-								},
-																{
-									field : 'insertby', 
-									title : '创建者' 
-								},
-																{
-									field : 'updateby', 
-									title : '修发者' 
-								},
-																{
-									field : 'inserttime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updatetime', 
-									title : '修改时间' 
-								},
-																{
-									field : 'logicaldeletecode', 
-									title : '逻辑删除：0存在，1删除' 
-								},
-																{
-									field : 'userid', 
-									title : '系统所有用户的维护表中的id（用户的唯一表示id）' 
+									title : '编号'
 								},
 																{
 									field : 'jsname', 

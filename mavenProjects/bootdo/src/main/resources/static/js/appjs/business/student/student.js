@@ -49,31 +49,7 @@ function load() {
 								},
 																{
 									field : 'tid', 
-									title : '唯一标识id' 
-								},
-																{
-									field : 'insertby', 
-									title : '创建者' 
-								},
-																{
-									field : 'updateby', 
-									title : '修发者' 
-								},
-																{
-									field : 'inserttime', 
-									title : '创建时间' 
-								},
-																{
-									field : 'updatetime', 
-									title : '修改时间' 
-								},
-																{
-									field : 'logicaldeletecode', 
-									title : '逻辑删除：0存在，1删除' 
-								},
-																{
-									field : 'userid', 
-									title : '系统所有用户的唯一识别id' 
+									title : '编号'
 								},
 																{
 									field : 'xsname', 
@@ -101,11 +77,11 @@ function load() {
 								},
 																{
 									field : 'xszt', 
-									title : '学生状态（1:正常，2:留级，3:已毕业（销籍）。销籍状态下无权登陆系统）' 
+									title : '学生状态'
 								},
 																{
 									field : 'xq', 
-									title : '学期（1,2,3,4,5,6,7,8）' 
+									title : '学期'
 								},
 																{
 									title : '操作',

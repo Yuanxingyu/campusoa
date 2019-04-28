@@ -113,5 +113,15 @@ public class JxjhController {
 		jxjhService.batchRemove(tids);
 		return R.ok();
 	}
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:jxjh:jxjh")
+	public List<JxjhDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return jxjhService.list(params);
+	}
 	
 }
