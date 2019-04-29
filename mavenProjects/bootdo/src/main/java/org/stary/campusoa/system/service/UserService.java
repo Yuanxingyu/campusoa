@@ -16,6 +16,8 @@ import org.stary.campusoa.system.vo.UserVO;
 public interface UserService {
 	UserDO get(Long id);
 
+	UserDO getByUserName(String username);
+
 	List<UserDO> list(Map<String, Object> map);
 
 	int count(Map<String, Object> map);

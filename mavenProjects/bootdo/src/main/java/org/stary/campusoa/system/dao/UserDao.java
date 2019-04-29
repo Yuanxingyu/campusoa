@@ -15,6 +15,8 @@ import org.stary.campusoa.system.domain.UserDO;
 @Mapper
 public interface UserDao {
 
+	UserDO getByUserName(String username);
+
 	UserDO get(Long userId);
 	
 	List<UserDO> list(Map<String,Object> map);

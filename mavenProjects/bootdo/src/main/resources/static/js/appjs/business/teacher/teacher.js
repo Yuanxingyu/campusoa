@@ -60,7 +60,7 @@ function load() {
 									title : '教工号' 
 								},
 																{
-									field : 'ssxyid', 
+									field : 'xymc',
 									title : '所属学院' 
 								},
 																{
@@ -69,7 +69,7 @@ function load() {
 								},
 																{
 									field : 'zygz', 
-									title : '介绍主要工作内容' 
+									title : '工作内容'
 								},
 																{
 									title : '操作',

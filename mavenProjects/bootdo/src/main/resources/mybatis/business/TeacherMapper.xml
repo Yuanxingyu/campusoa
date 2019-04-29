@@ -8,7 +8,8 @@
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.TeacherDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`userid`,`jsname`,`jgh`,`ssxyid`,`zc`,`zygz` from t_teacher
+		select tea.`tid`,tea.`userid`,tea.`jsname`,tea.`jgh`,tea.`ssxyid`,tea.`zc`,tea.`zygz`,xy.xymc from t_teacher tea
+		left join t_xy xy on xy.tid = tea.ssxyid
         <where>  
 		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
 		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
@@ -28,7 +29,7 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by tid desc
+                order by tea.tid desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

@@ -57,6 +57,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDO getByUserName(String username) {
+        UserDO user = userMapper.getByUserName(username);
+        List<Long> roleIds = userRoleMapper.listRoleId(user.getUserId());
+        user.setDeptName(deptMapper.get(user.getDeptId()).getName());
+        user.setRoleIds(roleIds);
+        return user;
+    }
+
+    @Override
     public List<UserDO> list(Map<String, Object> map) {
         String deptId = map.get("deptId").toString();
         if (StringUtils.isNotBlank(deptId)) {

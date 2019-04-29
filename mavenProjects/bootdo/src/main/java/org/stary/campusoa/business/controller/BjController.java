@@ -113,5 +113,15 @@ public class BjController {
 		bjService.batchRemove(tids);
 		return R.ok();
 	}
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:bj:bj")
+	public List<BjDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return bjService.list(params);
+	}
 	
 }

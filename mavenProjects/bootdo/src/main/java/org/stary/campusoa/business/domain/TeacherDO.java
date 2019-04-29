@@ -36,9 +36,32 @@ public class TeacherDO implements Serializable {
 	//所属学院
 	private Integer ssxyid;
 	//职称
-	private Integer zc;
+	private String zc;
 	//介绍主要工作内容
 	private String zygz;
+
+	//集合user内容
+	// 邮箱
+	private String email;
+
+	private String xymc;
+
+	public String getXymc() {
+		return xymc;
+	}
+
+	public void setXymc(String xymc) {
+		this.xymc = xymc;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 
 	/**
 	 * 设置：唯一标识id
@@ -163,13 +186,13 @@ public class TeacherDO implements Serializable {
 	/**
 	 * 设置：职称
 	 */
-	public void setZc(Integer zc) {
+	public void setZc(String zc) {
 		this.zc = zc;
 	}
 	/**
 	 * 获取：职称
 	 */
-	public Integer getZc() {
+	public String getZc() {
 		return zc;
 	}
 	/**

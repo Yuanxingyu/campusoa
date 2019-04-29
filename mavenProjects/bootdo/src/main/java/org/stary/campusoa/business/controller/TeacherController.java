@@ -1,5 +1,6 @@
 package org.stary.campusoa.business.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.stary.campusoa.business.domain.TeacherDO;
 import org.stary.campusoa.business.service.TeacherService;
+import org.stary.campusoa.common.utils.MD5Utils;
 import org.stary.campusoa.common.utils.PageUtils;
 import org.stary.campusoa.common.utils.Query;
 import org.stary.campusoa.common.utils.R;
+import org.stary.campusoa.system.domain.UserDO;
+import org.stary.campusoa.system.service.UserService;
 
 /**
  * 教师表
@@ -34,6 +38,9 @@ import org.stary.campusoa.common.utils.R;
 public class TeacherController {
 	@Autowired
 	private TeacherService teacherService;
+
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping()
 	@RequiresPermissions("business:teacher:teacher")
@@ -74,7 +81,26 @@ public class TeacherController {
 	@PostMapping("/save")
 	@RequiresPermissions("business:teacher:add")
 	public R save( TeacherDO teacher){
-		if(teacherService.save(teacher)>0){
+
+		List<Long> roles = new ArrayList<>();
+		roles.add(59l);
+		UserDO user = new UserDO();
+		user.setEmail(teacher.getEmail());
+		user.setName(teacher.getJsname());
+		user.setUsername(teacher.getJgh());
+		user.setPassword(MD5Utils.encrypt(teacher.getJgh(), "123456"));
+		user.setStatus(1);
+		user.setRoleIds(roles);
+		user.setDeptId(12l);
+		user.setDeptName("教学一部");
+		int userFlag = userService.save(user);
+		UserDO userDO = null;
+		if (userFlag>0){
+			userDO = userService.getByUserName(teacher.getJgh());
+		}
+		teacher.setUserid(userDO.getUserId());
+		int stuFlag = teacherService.save(teacher);
+		if (userFlag> 0&& stuFlag>0){
 			return R.ok();
 		}
 		return R.error();

@@ -1,8 +1,10 @@
 package org.stary.campusoa.business.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
 
 
 /**
@@ -45,6 +47,48 @@ public class StudentDO implements Serializable {
 	private Integer xszt;
 	//学期（1,2,3,4,5,6,7,8）
 	private Integer xq;
+
+	private String xymc;
+
+	private String zymc;
+
+	private String bjmc;
+
+	//集合user内容
+	// 邮箱
+	private String email;
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getXymc() {
+		return xymc;
+	}
+
+	public void setXymc(String xymc) {
+		this.xymc = xymc;
+	}
+
+	public String getZymc() {
+		return zymc;
+	}
+
+	public void setZymc(String zymc) {
+		this.zymc = zymc;
+	}
+
+	public String getBjmc() {
+		return bjmc;
+	}
+
+	public void setBjmc(String bjmc) {
+		this.bjmc = bjmc;
+	}
 
 	/**
 	 * 设置：唯一标识id

@@ -1,5 +1,6 @@
 package org.stary.campusoa.business.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,9 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.stary.campusoa.business.domain.StudentDO;
 import org.stary.campusoa.business.service.StudentService;
+import org.stary.campusoa.common.utils.MD5Utils;
 import org.stary.campusoa.common.utils.PageUtils;
 import org.stary.campusoa.common.utils.Query;
 import org.stary.campusoa.common.utils.R;
+import org.stary.campusoa.system.domain.UserDO;
+import org.stary.campusoa.system.service.UserService;
 
 /**
  * 学生表
@@ -34,6 +38,9 @@ import org.stary.campusoa.common.utils.R;
 public class StudentController {
 	@Autowired
 	private StudentService studentService;
+
+	@Autowired
+	private UserService userService;
 	
 	@GetMapping()
 	@RequiresPermissions("business:student:student")
@@ -74,11 +81,30 @@ public class StudentController {
 	@PostMapping("/save")
 	@RequiresPermissions("business:student:add")
 	public R save( StudentDO student){
-		if(studentService.save(student)>0){
+		List<Long> roles = new ArrayList<>();
+		roles.add(60l);
+		UserDO user = new UserDO();
+		user.setEmail(student.getEmail());
+		user.setName(student.getXsname());
+		user.setUsername(student.getXgh());
+		user.setPassword(MD5Utils.encrypt(student.getXgh(), "123456"));
+		user.setStatus(1);
+		user.setRoleIds(roles);
+		user.setDeptId(7l);
+		user.setDeptName("学生一部");
+		int userFlag = userService.save(user);
+		UserDO userDO = null;
+		if (userFlag>0){
+			userDO = userService.getByUserName(student.getXgh());
+		}
+		student.setUserid(userDO.getUserId());
+		int stuFlag = studentService.save(student);
+		if (userFlag> 0&& stuFlag>0){
 			return R.ok();
 		}
 		return R.error();
 	}
+
 	/**
 	 * 修改
 	 */

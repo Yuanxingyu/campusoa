@@ -8,7 +8,10 @@
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.StudentDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`userid`,`xsname`,`xgh`,`ssxyid`,`sszyid`,`rxnf`,`ssbjid`,`xszt`,`xq` from t_student
+		select stu.`tid`,stu.`userid`,stu.`xsname`,stu.`xgh`,stu.`ssxyid`,stu.`sszyid`,stu.`rxnf`,stu.`ssbjid`,stu.`xszt`,stu.`xq`,xy.xymc as xymc,zy.zymc as zymc,bj.bjmc as bjmc from t_student stu
+		left join t_xy xy on xy.tid = stu.ssxyid
+		left join t_zy zy on zy.tid = stu.sszyid
+		left join t_bj bj on bj.tid = stu.ssbjid
         <where>  
 		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
 		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
@@ -31,7 +34,7 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by tid desc
+                order by stu.tid desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

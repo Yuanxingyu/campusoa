@@ -60,21 +60,21 @@ function load() {
 									title : '学工号' 
 								},
 																{
-									field : 'ssxyid', 
+									field : 'xymc',
 									title : '所属学院' 
 								},
 																{
-									field : 'sszyid', 
+									field : 'zymc',
 									title : '所属专业' 
 								},
 																{
-									field : 'rxnf', 
-									title : '入学年份' 
-								},
-																{
-									field : 'ssbjid', 
+									field : 'bjmc',
 									title : '所属班级' 
 								},
+																{
+                            	    field : 'rxnf',
+                                	title : '入学年份'
+                            	},
 																{
 									field : 'xszt', 
 									title : '学生状态'

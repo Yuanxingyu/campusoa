@@ -1,4 +1,7 @@
 $().ready(function() {
+	loadXyType();
+	loadZyType();
+	loadBjType();
 	validateRule();
 });
 
@@ -46,4 +49,88 @@ function validateRule() {
 			}
 		}
 	})
+}
+
+function loadXyType(){
+    var html = "";
+    $.ajax({
+        url : '/business/xy/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].xymc + '</option>'
+            }
+            $(".xy-chosen-select").append(html);
+            $(".xy-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.xy-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+
+function loadZyType(){
+    var html = "";
+    $.ajax({
+        url : '/business/zy/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].zymc + '</option>'
+            }
+            $(".zy-chosen-select").append(html);
+            $(".zy-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.zy-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+
+function loadBjType(){
+    var html = "";
+    $.ajax({
+        url : '/business/bj/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].bjmc + '</option>'
+            }
+            $(".bj-chosen-select").append(html);
+            $(".bj-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.bj-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
 }
