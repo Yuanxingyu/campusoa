@@ -52,28 +52,28 @@ function load() {
 									title : '编号'
 								},
 																{
-									field : 'zy',
-									title : '专业'
+									field : 'zymc',
+									title : '专业名称'
 								},
 																{
-									field : 'jxjhid', 
-									title : '课程'
+									field : 'kcmc',
+									title : '课程名称'
 								},
 																{
 									field : 'kkxq', 
-									title : '各专业的开课学期' 
+									title : '开课学期'
 								},
 																{
-									field : 'rkjsid', 
-									title : '任课教师id' 
+									field : 'rkjsname',
+									title : '任课教师'
 								},
 																{
 									field : 'sksjd', 
-									title : '上课时间段（1、8:00-9:40,2、10:10-11:50，3、13:30-15:10,4、15:40-17:20,5、18:30-20:10）' 
+									title : '上课时间段'
 								},
 																{
 									field : 'skdd', 
-									title : '上课地点（数据字典维护）' 
+									title : '上课地点'
 								},
 																{
 									title : '操作',

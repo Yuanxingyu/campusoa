@@ -40,6 +40,36 @@ public class ZyKcDO implements Serializable {
 	//上课地点（数据字典维护）
 	private String skdd;
 
+	private String zymc;
+
+	private String kcmc;
+
+	private String rkjsname;
+
+	public String getZymc() {
+		return zymc;
+	}
+
+	public void setZymc(String zymc) {
+		this.zymc = zymc;
+	}
+
+	public String getKcmc() {
+		return kcmc;
+	}
+
+	public void setKcmc(String kcmc) {
+		this.kcmc = kcmc;
+	}
+
+	public String getRkjsname() {
+		return rkjsname;
+	}
+
+	public void setRkjsname(String rkjsname) {
+		this.rkjsname = rkjsname;
+	}
+
 	/**
 	 * 设置：唯一标识id
 	 */

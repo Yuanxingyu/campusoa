@@ -8,7 +8,10 @@
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.BjKbDO">
-		select `tid`,`insertBy`,`updateBy`,`insertTime`,`updateTime`,`logicaldeletecode`,`bjid`,`zykcid` from t_bj_kb
+		select bjkb.`tid`,bjkb.`bjid`,bjkb.`zykcid`,bj.bjmc as bjmc,jxjh.kcmc as kcmc from t_bj_kb bjkb
+		left join t_bj bj on bj.tid = bjkb.bjid
+		left join t_zy_kc zykc on zykc.tid = bjkb.zykcid
+		left join t_jxjh jxjh on jxjh.tid = zykc.jxjhid
         <where>  
 		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
 		  		  <if test="insertby != null and insertby != ''"> and insertBy = #{insertby} </if>
@@ -24,7 +27,7 @@
                 order by ${sort} ${order}
             </when>
 			<otherwise>
-                order by tid desc
+                order by bjkb.tid desc
 			</otherwise>
         </choose>
 		<if test="offset != null and limit != null">

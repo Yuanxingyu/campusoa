@@ -1,4 +1,5 @@
 $().ready(function() {
+    loadType();
 	loadJxjh();
     loadZyType();
 	validateRule();
@@ -107,4 +108,30 @@ function loadJxjh(){
     });
 }
 
-
+function loadType(){
+    var html = "";
+    $.ajax({
+        url : '/business/teacher/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].jsname + '</option>'
+            }
+            $(".chosen-select").append(html);
+            $(".chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}

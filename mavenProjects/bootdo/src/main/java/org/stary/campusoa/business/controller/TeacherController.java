@@ -139,5 +139,15 @@ public class TeacherController {
 		teacherService.batchRemove(tids);
 		return R.ok();
 	}
-	
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:teacher:teacher")
+	public List<TeacherDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return teacherService.list(params);
+	}
+
 }

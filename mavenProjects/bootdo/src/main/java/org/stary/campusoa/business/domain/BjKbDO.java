@@ -32,6 +32,26 @@ public class BjKbDO implements Serializable {
 	//对应的专业课程计划id
 	private Integer zykcid;
 
+	private String bjmc;
+
+	private String kcmc;
+
+	public String getBjmc() {
+		return bjmc;
+	}
+
+	public void setBjmc(String bjmc) {
+		this.bjmc = bjmc;
+	}
+
+	public String getKcmc() {
+		return kcmc;
+	}
+
+	public void setKcmc(String kcmc) {
+		this.kcmc = kcmc;
+	}
+
 	/**
 	 * 设置：表内唯一标识id
 	 */

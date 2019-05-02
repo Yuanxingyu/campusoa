@@ -1,4 +1,6 @@
 $().ready(function() {
+	loadBjType();
+	loadZyKcType();
 	validateRule();
 });
 
@@ -46,4 +48,60 @@ function validateRule() {
 			}
 		}
 	})
+}
+
+function loadBjType(){
+    var html = "";
+    $.ajax({
+        url : '/business/bj/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].bjmc + '</option>'
+            }
+            $(".bj-chosen-select").append(html);
+            $(".bj-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.bj-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+
+function loadZyKcType(){
+    var html = "";
+    $.ajax({
+        url : '/business/zyKc/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].kcmc + '</option>'
+            }
+            $(".kc-chosen-select").append(html);
+            $(".kc-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.kc-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
 }

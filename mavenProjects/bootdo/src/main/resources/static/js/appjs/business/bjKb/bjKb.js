@@ -52,12 +52,12 @@ function load() {
 									title : '编号'
 								},
 																{
-									field : 'bjid', 
-									title : '班级id' 
+									field : 'bjmc',
+									title : '班级名称'
 								},
 																{
-									field : 'zykcid', 
-									title : '对应的专业课程计划id' 
+									field : 'kcmc',
+									title : '课程名称'
 								},
 																{
 									title : '操作',

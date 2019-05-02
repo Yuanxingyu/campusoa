@@ -113,5 +113,15 @@ public class ZyKcController {
 		zyKcService.batchRemove(tids);
 		return R.ok();
 	}
-	
+
+	/**
+	 * 查找
+	 */
+	@GetMapping( "/queryByproperties")
+	@ResponseBody
+	@RequiresPermissions("business:zyKc:zyKc")
+	public List<ZyKcDO> queryByproperties(@RequestParam Map<String, Object> params){
+		return zyKcService.list(params);
+	}
+
 }
