@@ -1,18 +1,21 @@
 package org.stary.campusoa.business.domain;
 
+import org.stary.campusoa.activiti.domain.TaskDO;
+import org.stary.campusoa.activiti.vo.TaskVO;
+
 import java.io.Serializable;
 import java.util.Date;
 
 
 
 /**
- * 班级表
+ * 设备报修事务表
  * 
  * @author stary
  * @email 3303521941@qq.com
- * @date 2019-04-21 01:03:36
+ * @date 2019-05-13 14:49:57
  */
-public class BjDO implements Serializable {
+public class SbbxDO extends TaskDO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//表内唯一标识id
@@ -27,85 +30,14 @@ public class BjDO implements Serializable {
 	private Date updatetime;
 	//逻辑删除：0存在，1删除
 	private Integer logicaldeletecode;
-	//所属学院id
-	private Integer ssxyid;
-	//所属专业id
-	private Integer sszyid;
-	//班级名称
-	private String bjmc;
-	//学期
-	private Integer xq;
-	//班级代码
-	private String bjdm;
-
-	private String ssxy;
-
-	private String sszy;
-
-	private Integer bzrId;
-
-	private String bzrName;
-
-	private Integer fdyId;
-
-	private String fdyName;
-
-	//设置班级管理人员
-	public Integer getBzrId() {
-		return bzrId;
-	}
-
-	public void setBzrId(Integer bzrId) {
-		this.bzrId = bzrId;
-	}
-
-	public String getBzrName() {
-		return bzrName;
-	}
-
-	public void setBzrName(String bzrName) {
-		this.bzrName = bzrName;
-	}
-
-	public Integer getFdyId() {
-		return fdyId;
-	}
-
-	public void setFdyId(Integer fdyId) {
-		this.fdyId = fdyId;
-	}
-
-	public String getFdyName() {
-		return fdyName;
-	}
-
-	public void setFdyName(String fdyName) {
-		this.fdyName = fdyName;
-	}
-
-	public String getBjdm() {
-		return bjdm;
-	}
-
-	public void setBjdm(String bjdm) {
-		this.bjdm = bjdm;
-	}
-
-	public String getSszy() {
-		return sszy;
-	}
-
-	public void setSszy(String sszy) {
-		this.sszy = sszy;
-	}
-
-	public String getSsxy() {
-		return ssxy;
-	}
-
-	public void setSsxy(String ssxy) {
-		this.ssxy = ssxy;
-	}
+	//申报学生id
+	private Integer xsid;
+	//学生姓名
+	private String xsname;
+	//申报原因
+	private String qjyy;
+	//流程状态
+	private String processstate;
 
 	/**
 	 * 设置：表内唯一标识id
@@ -180,51 +112,51 @@ public class BjDO implements Serializable {
 		return logicaldeletecode;
 	}
 	/**
-	 * 设置：所属学院id
+	 * 设置：申报学生id
 	 */
-	public void setSsxyid(Integer ssxyid) {
-		this.ssxyid = ssxyid;
+	public void setXsid(Integer xsid) {
+		this.xsid = xsid;
 	}
 	/**
-	 * 获取：所属学院id
+	 * 获取：申报学生id
 	 */
-	public Integer getSsxyid() {
-		return ssxyid;
+	public Integer getXsid() {
+		return xsid;
 	}
 	/**
-	 * 设置：所属专业id
+	 * 设置：学生姓名
 	 */
-	public void setSszyid(Integer sszyid) {
-		this.sszyid = sszyid;
+	public void setXsname(String xsname) {
+		this.xsname = xsname;
 	}
 	/**
-	 * 获取：所属专业id
+	 * 获取：学生姓名
 	 */
-	public Integer getSszyid() {
-		return sszyid;
+	public String getXsname() {
+		return xsname;
 	}
 	/**
-	 * 设置：班级名称
+	 * 设置：申报原因
 	 */
-	public void setBjmc(String bjmc) {
-		this.bjmc = bjmc;
+	public void setQjyy(String qjyy) {
+		this.qjyy = qjyy;
 	}
 	/**
-	 * 获取：班级名称
+	 * 获取：申报原因
 	 */
-	public String getBjmc() {
-		return bjmc;
+	public String getQjyy() {
+		return qjyy;
 	}
 	/**
-	 * 设置：学期
+	 * 设置：流程状态
 	 */
-	public void setXq(Integer xq) {
-		this.xq = xq;
+	public void setProcessstate(String processstate) {
+		this.processstate = processstate;
 	}
 	/**
-	 * 获取：学期
+	 * 获取：流程状态
 	 */
-	public Integer getXq() {
-		return xq;
+	public String getProcessstate() {
+		return processstate;
 	}
 }

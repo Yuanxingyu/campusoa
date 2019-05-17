@@ -48,20 +48,26 @@ function load() {
 									checkbox : true
 								},
 																{
-									field : 'tid', 
+									field : 'tid',
 									title : '编号'
 								},
 																{
-									field : 'zykcid', 
-									title : '专业-课程表的tid' 
+									field : 'zymc',
+									title : '专业'
 								},
+                            									{
+                                	field : 'kcmc',
+                                	title : '课程'
+                            	},								{
+									field : 'kcdm',
+									title : '课程代码'
+                            	},{
+                                	field : 'xf',
+                                	title : '学分'
+                            	},
 																{
-									field : 'xsid', 
-									title : '学生id' 
-								},
-																{
-									field : 'score', 
-									title : '成绩' 
+									field : 'xsname',
+									title : '学生'
 								},
 																{
 									title : '操作',

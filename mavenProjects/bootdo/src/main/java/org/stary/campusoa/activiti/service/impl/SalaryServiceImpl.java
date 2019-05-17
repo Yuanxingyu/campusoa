@@ -41,7 +41,10 @@ public class SalaryServiceImpl implements SalaryService {
 	@Override
 	public int save(SalaryDO salary){
 			salary.setId(UUID.randomUUID().toString().replace("-",""));
-			actTaskService.startProcess(ActivitiConstant.ACTIVITI_SALARY[0],ActivitiConstant.ACTIVITI_SALARY[1],salary.getId(),salary.getContent(),new HashMap<>());
+			Map map = new HashMap<>();
+			//找到流程处理人并对设置的assignee进行key的设值
+			map.put("first","20151344051");
+			actTaskService.startProcess(ActivitiConstant.ACTIVITI_SALARY[0],ActivitiConstant.ACTIVITI_SALARY[1],salary.getId(),salary.getContent(),map);
 			return salaryDao.save(salary);
 	}
 	@Transactional(rollbackFor=Exception.class)

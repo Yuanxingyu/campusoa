@@ -1,28 +1,22 @@
 package org.stary.campusoa.business.controller;
 
-import java.util.List;
-import java.util.Map;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.stary.campusoa.business.domain.XsKcDO;
 import org.stary.campusoa.business.service.XsKcService;
 import org.stary.campusoa.common.utils.PageUtils;
 import org.stary.campusoa.common.utils.Query;
 import org.stary.campusoa.common.utils.R;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
- * 学生选课表
+ * 学生成绩表
  * 
  * @author stary
  * @email 3303521941@qq.com
@@ -30,15 +24,15 @@ import org.stary.campusoa.common.utils.R;
  */
  
 @Controller
-@RequestMapping("/business/xsKc")
-public class XsKcController {
+@RequestMapping("/business/scoreGl")
+public class ScoreGlController {
 	@Autowired
 	private XsKcService xsKcService;
 	
 	@GetMapping()
 	@RequiresPermissions("business:xsKc:xsKc")
 	String XsKc(){
-	    return "business/xsKc/xsKc";
+	    return "business/scoreGl/scoreGl";
 	}
 	
 	@ResponseBody
@@ -62,9 +56,11 @@ public class XsKcController {
 	@GetMapping("/edit/{tid}")
 	@RequiresPermissions("business:xsKc:edit")
 	String edit(@PathVariable("tid") Integer tid,Model model){
-		XsKcDO xsKc = xsKcService.get(tid);
+		Map<String,Object> map = new HashMap<>();
+		map.put("tid",tid);
+		XsKcDO xsKc = xsKcService.list(map).get(0);
 		model.addAttribute("xsKc", xsKc);
-	    return "business/xsKc/edit";
+	    return "business/scoreGl/edit";
 	}
 	
 //	/**

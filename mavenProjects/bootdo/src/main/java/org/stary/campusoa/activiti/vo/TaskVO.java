@@ -1,5 +1,6 @@
 package org.stary.campusoa.activiti.vo;
 
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.task.Task;
 
 /**
@@ -7,6 +8,10 @@ import org.activiti.engine.task.Task;
  */
 public class TaskVO  {
 
+    /**
+     * 待办事务构造器
+     * @param task
+     */
     public TaskVO(Task task){
 
         this.setId(task.getId());
@@ -19,6 +24,23 @@ public class TaskVO  {
         this.setProcessDefinitionId(task.getProcessDefinitionId());
         this.setExecutionId(task.getExecutionId());
     }
+
+    /**
+     * 已办事务构造器
+     * @param historicTaskInstance
+     */
+    public TaskVO(HistoricTaskInstance historicTaskInstance){
+        this.setId(historicTaskInstance.getId());
+        this.setKey(historicTaskInstance.getTaskDefinitionKey());
+        this.setName(historicTaskInstance.getName());
+        this.setDescription(historicTaskInstance.getDescription());
+        this.setAssignee(historicTaskInstance.getAssignee());
+        this.setFormKey(historicTaskInstance.getFormKey());
+        this.setProcessId(historicTaskInstance.getProcessInstanceId());
+        this.setProcessDefinitionId(historicTaskInstance.getProcessDefinitionId());
+        this.setExecutionId(historicTaskInstance.getExecutionId());
+    }
+
     private  String id;
     private String name;
     private String key;

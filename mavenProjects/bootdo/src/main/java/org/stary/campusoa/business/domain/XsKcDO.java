@@ -34,6 +34,53 @@ public class XsKcDO implements Serializable {
 	//成绩
 	private Double score;
 
+	private String zymc;
+	private String kcmc;
+	private String xsname;
+	private String kcdm;
+	private Integer xf;
+
+	public String getKcdm() {
+		return kcdm;
+	}
+
+	public void setKcdm(String kcdm) {
+		this.kcdm = kcdm;
+	}
+
+	public Integer getXf() {
+		return xf;
+	}
+
+	public void setXf(Integer xf) {
+		this.xf = xf;
+	}
+
+	public String getZymc() {
+		return zymc;
+
+	}
+
+	public void setZymc(String zymc) {
+		this.zymc = zymc;
+	}
+
+	public String getKcmc() {
+		return kcmc;
+	}
+
+	public void setKcmc(String kcmc) {
+		this.kcmc = kcmc;
+	}
+
+	public String getXsname() {
+		return xsname;
+	}
+
+	public void setXsname(String xsname) {
+		this.xsname = xsname;
+	}
+
 	/**
 	 * 设置：表内唯一标识id
 	 */

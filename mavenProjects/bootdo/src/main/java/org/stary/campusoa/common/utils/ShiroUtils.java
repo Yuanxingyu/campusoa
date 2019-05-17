@@ -6,11 +6,15 @@ import org.apache.shiro.session.mgt.eis.SessionDAO;
 import org.apache.shiro.subject.Subject;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.stary.campusoa.business.dao.StudentDao;
+import org.stary.campusoa.business.domain.StudentDO;
 import org.stary.campusoa.system.domain.UserDO;
 
 import java.security.Principal;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShiroUtils {
     @Autowired
@@ -35,4 +39,5 @@ public class ShiroUtils {
         Collection<Session> sessions = sessionDAO.getActiveSessions();
         return principals;
     }
+
 }

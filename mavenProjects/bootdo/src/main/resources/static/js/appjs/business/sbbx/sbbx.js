@@ -1,5 +1,5 @@
 
-var prefix = "/business/bj"
+var prefix = "/business/sbbx"
 $(function() {
 	load();
 });
@@ -52,33 +52,17 @@ function load() {
 									title : '编号'
 								},
 																{
-									field : 'ssxy',
-									title : '所属学院'
+									field : 'xsname', 
+									title : '学生姓名' 
 								},
 																{
-									field : 'sszy',
-									title : '所属专业'
+									field : 'qjyy', 
+									title : '申报原因' 
 								},
 																{
-									field : 'bjmc', 
-									title : '班级名称' 
+									field : 'processstate', 
+									title : '流程状态' 
 								},
-																{
-                                    field : 'bjdm',
-                                    title : '班级代码'
-                            	},
-																{
-									field : 'xq', 
-									title : '学期' 
-								},
-                            	{
-                                	field : 'bzrName',
-                                	title : '班主任'
-                            	},
-                            									{
-                                	field : 'fdyName',
-                                	title : '辅导员'
-                            	},
 																{
 									title : '操作',
 									field : 'id',

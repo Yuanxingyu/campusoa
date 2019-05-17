@@ -15,92 +15,95 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import org.stary.campusoa.business.domain.XsKcDO;
-import org.stary.campusoa.business.service.XsKcService;
+import org.stary.campusoa.activiti.utils.ActivitiUtils;
+import org.stary.campusoa.business.domain.XsqjDO;
+import org.stary.campusoa.business.service.XsqjService;
 import org.stary.campusoa.common.utils.PageUtils;
 import org.stary.campusoa.common.utils.Query;
 import org.stary.campusoa.common.utils.R;
 
 /**
- * 学生选课表
+ * 请假事务表
  * 
  * @author stary
  * @email 3303521941@qq.com
- * @date 2019-04-21 01:03:37
+ * @date 2019-05-13 14:49:57
  */
  
 @Controller
-@RequestMapping("/business/xsKc")
-public class XsKcController {
+@RequestMapping("/business/xsqj")
+public class XsqjController {
 	@Autowired
-	private XsKcService xsKcService;
+	private XsqjService xsqjService;
+
+	@Autowired
+	ActivitiUtils activitiUtils;
 	
 	@GetMapping()
-	@RequiresPermissions("business:xsKc:xsKc")
-	String XsKc(){
-	    return "business/xsKc/xsKc";
+	@RequiresPermissions("business:xsqj:xsqj")
+	String Xsqj(){
+	    return "business/xsqj/xsqj";
 	}
 	
 	@ResponseBody
 	@GetMapping("/list")
-	@RequiresPermissions("business:xsKc:xsKc")
+	@RequiresPermissions("business:xsqj:xsqj")
 	public PageUtils list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
-		List<XsKcDO> xsKcList = xsKcService.list(query);
-		int total = xsKcService.count(query);
-		PageUtils pageUtils = new PageUtils(xsKcList, total);
+		List<XsqjDO> xsqjList = xsqjService.list(query);
+		int total = xsqjService.count(query);
+		PageUtils pageUtils = new PageUtils(xsqjList, total);
 		return pageUtils;
 	}
-	
+
 	@GetMapping("/add")
-	@RequiresPermissions("business:xsKc:add")
+	@RequiresPermissions("business:xsqj:add")
 	String add(){
-	    return "business/xsKc/add";
+	    return "business/xsqj/add";
+	}
+
+	@GetMapping("/edit")
+	String edit() {
+		return "business/xsqj/add";
 	}
 
 	@GetMapping("/edit/{tid}")
-	@RequiresPermissions("business:xsKc:edit")
+	@RequiresPermissions("business:xsqj:edit")
 	String edit(@PathVariable("tid") Integer tid,Model model){
-		XsKcDO xsKc = xsKcService.get(tid);
-		model.addAttribute("xsKc", xsKc);
-	    return "business/xsKc/edit";
+		XsqjDO xsqj = xsqjService.get(tid);
+		model.addAttribute("xsqj", xsqj);
+	    return "business/xsqj/edit";
+	}
+
+	@GetMapping("/form/{taskId}")
+	String edit(@PathVariable("taskId") String taskId, Model model) {
+		XsqjDO xsqjDO = xsqjService.get(Integer.parseInt(activitiUtils.getBusinessKeyByTaskId(taskId)));
+		xsqjDO.setTaskId(taskId);
+		model.addAttribute("xsqj", xsqjDO);
+		return "business/xsqj/edit";
 	}
 	
-//	/**
-//	 * 保存
-//	 */
-//	@ResponseBody
-//	@PostMapping("/save")
-//	@RequiresPermissions("business:xsKc:add")
-//	public R save( XsKcDO xsKc){
-//		if(xsKcService.save(xsKc)>0){
-//			return R.ok();
-//		}
-//		return R.error();
-//	}
-
 	/**
 	 * 保存
 	 */
 	@ResponseBody
 	@PostMapping("/save")
-	@RequiresPermissions("business:xsKc:add")
-	public R save( @RequestParam(value = "ids[]")String[] data ){
-		if(xsKcService.save(data)>0){
+	@RequiresPermissions("business:xsqj:add")
+	public R save( XsqjDO xsqj){
+		if(xsqjService.save(xsqj)>0){
 			return R.ok();
 		}
 		return R.error();
 	}
-
 	/**
 	 * 修改
 	 */
 	@ResponseBody
 	@RequestMapping("/update")
-	@RequiresPermissions("business:xsKc:edit")
-	public R update( XsKcDO xsKc){
-		xsKcService.update(xsKc);
+	@RequiresPermissions("business:xsqj:edit")
+	public R update( XsqjDO xsqj){
+		xsqjService.update(xsqj);
 		return R.ok();
 	}
 	
@@ -109,9 +112,9 @@ public class XsKcController {
 	 */
 	@PostMapping( "/remove")
 	@ResponseBody
-	@RequiresPermissions("business:xsKc:remove")
+	@RequiresPermissions("business:xsqj:remove")
 	public R remove( Integer tid){
-		if(xsKcService.remove(tid)>0){
+		if(xsqjService.remove(tid)>0){
 		return R.ok();
 		}
 		return R.error();
@@ -122,9 +125,9 @@ public class XsKcController {
 	 */
 	@PostMapping( "/batchRemove")
 	@ResponseBody
-	@RequiresPermissions("business:xsKc:batchRemove")
+	@RequiresPermissions("business:xsqj:batchRemove")
 	public R remove(@RequestParam("ids[]") Integer[] tids){
-		xsKcService.batchRemove(tids);
+		xsqjService.batchRemove(tids);
 		return R.ok();
 	}
 	

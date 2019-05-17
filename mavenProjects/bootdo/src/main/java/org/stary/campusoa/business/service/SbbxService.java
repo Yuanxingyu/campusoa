@@ -1,28 +1,28 @@
 package org.stary.campusoa.business.service;
 
-import org.stary.campusoa.business.domain.XsKcDO;
+import org.stary.campusoa.business.domain.SbbxDO;
 
 import java.util.List;
 import java.util.Map;
 
 /**
- * 学生选课表
+ * 设备报修事务表
  * 
  * @author stary
  * @email 3303521941@qq.com
- * @date 2019-04-21 01:03:37
+ * @date 2019-05-13 14:49:57
  */
-public interface XsKcService {
+public interface SbbxService {
 	
-	XsKcDO get(Integer tid);
+	SbbxDO get(Integer tid);
 	
-	List<XsKcDO> list(Map<String, Object> map);
+	List<SbbxDO> list(Map<String, Object> map);
 	
 	int count(Map<String, Object> map);
 	
-	int save(String[] kcIds);
+	int save(SbbxDO sbbx);
 	
-	int update(XsKcDO xsKc);
+	int update(SbbxDO sbbx);
 	
 	int remove(Integer tid);
 	

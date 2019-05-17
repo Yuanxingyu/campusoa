@@ -1,5 +1,5 @@
 
-var prefix = "/business/bj"
+var prefix = "/business/scoreGl"
 $(function() {
 	load();
 });
@@ -47,38 +47,32 @@ function load() {
 								{
 									checkbox : true
 								},
-																{
-									field : 'tid', 
-									title : '编号'
-								},
-																{
-									field : 'ssxy',
-									title : '所属学院'
-								},
-																{
-									field : 'sszy',
-									title : '所属专业'
-								},
-																{
-									field : 'bjmc', 
-									title : '班级名称' 
-								},
-																{
-                                    field : 'bjdm',
-                                    title : '班级代码'
+								{
+                            	    field : 'tid',
+                                	title : '编号'
                             	},
-																{
-									field : 'xq', 
-									title : '学期' 
-								},
                             	{
-                                	field : 'bzrName',
-                                	title : '班主任'
+                                	field : 'zymc',
+                                	title : '专业'
                             	},
-                            									{
-                                	field : 'fdyName',
-                                	title : '辅导员'
+                            	{
+                                	field : 'kcmc',
+                                	title : '课程'
+                            	},								{
+                                	field : 'kcdm',
+                                	title : '课程代码'
+                            	},{
+                                	field : 'xf',
+                                	title : '学分'
                             	},
+                            	{
+                                	field : 'xsname',
+                                	title : '学生'
+                            	},
+																{
+									field : 'score', 
+									title : '成绩' 
+								},
 																{
 									title : '操作',
 									field : 'id',

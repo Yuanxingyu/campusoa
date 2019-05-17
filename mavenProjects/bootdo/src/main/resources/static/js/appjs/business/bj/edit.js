@@ -1,6 +1,8 @@
 $().ready(function() {
 	loadXyType();
 	loadZyType();
+    loadfdyType();
+    loadbzrType();
 	validateRule();
 });
 
@@ -94,6 +96,62 @@ function loadZyType(){
             });
             //点击事件
             $('.zy-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+
+function loadfdyType(){
+    var html = "";
+    $.ajax({
+        url : '/business/teacher/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].jsname + '</option>'
+            }
+            $(".fdy-chosen-select").append(html);
+            $(".fdy-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.fdy-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
+}
+
+function loadbzrType(){
+    var html = "";
+    $.ajax({
+        url : '/business/teacher/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].jsname + '</option>'
+            }
+            $(".bzr-chosen-select").append(html);
+            $(".bzr-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.bzr-chosen-select').on('change', function(e, params) {
                 console.log(params.selected);
                 var opt = {
                     query : {

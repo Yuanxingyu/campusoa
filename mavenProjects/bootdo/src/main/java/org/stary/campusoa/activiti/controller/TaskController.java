@@ -1,8 +1,10 @@
 package org.stary.campusoa.activiti.controller;
 
 import org.activiti.engine.FormService;
+import org.activiti.engine.HistoryService;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.TaskService;
+import org.activiti.engine.history.HistoricTaskInstance;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.stary.campusoa.activiti.service.ActTaskService;
 import org.stary.campusoa.activiti.vo.ProcessVO;
 import org.stary.campusoa.activiti.vo.TaskVO;
 import org.stary.campusoa.common.utils.PageUtils;
+import org.stary.campusoa.common.utils.ShiroUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -36,11 +39,21 @@ public class TaskController {
     TaskService taskService;
     @Autowired
     ActTaskService actTaskService;
+
+    @Autowired
+    HistoryService historyService;
+
     @GetMapping("goto")
     public ModelAndView gotoTask(){
         return new ModelAndView("act/task/gotoTask");
     }
 
+    /**
+     * 发起流程
+     * @param offset
+     * @param limit
+     * @return
+     */
     @GetMapping("/gotoList")
     PageUtils list(int offset, int limit) {
         List<ProcessDefinition> processDefinitions = repositoryService.createProcessDefinitionQuery()
@@ -76,12 +89,35 @@ public class TaskController {
         return new ModelAndView("act/task/todoTask");
     }
 
+    /**
+     * 代办任务
+     * @return
+     */
     @GetMapping("/todoList")
     List<TaskVO> todoList(){
-        List<Task> tasks = taskService.createTaskQuery().taskAssignee("admin").list();
+//        List<Task> tasks = taskService.createTaskQuery().taskAssignee("20151344051").list();
+        List<Task> tasks = taskService.createTaskQuery().taskAssignee(String.valueOf(ShiroUtils.getUserId())).list();
+//        List<Task> tasks = taskService.createTaskQuery().taskAssignee(String.valueOf("admin")).list();
         List<TaskVO> taskVOS =  new ArrayList<>();
         for(Task task : tasks){
             TaskVO taskVO = new TaskVO(task);
+            taskVOS.add(taskVO);
+        }
+        return taskVOS;
+    }
+
+    /**
+     * 已办事务
+     * @return
+     */
+    @GetMapping("/completedList")
+    List<TaskVO> completedList(){
+        //获得当前用户处理的历史流程实例
+        List<HistoricTaskInstance>  hisTaskList = historyService.createHistoricTaskInstanceQuery()
+                .taskAssignee(String.valueOf(ShiroUtils.getUserId())).orderByTaskId().desc().list();
+        List<TaskVO> taskVOS =  new ArrayList<>();
+        for(HistoricTaskInstance historicTaskInstance : hisTaskList){
+            TaskVO taskVO = new TaskVO(historicTaskInstance);
             taskVOS.add(taskVO);
         }
         return taskVOS;

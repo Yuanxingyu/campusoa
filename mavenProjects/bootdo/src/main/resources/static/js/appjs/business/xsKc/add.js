@@ -1,4 +1,5 @@
 $().ready(function() {
+    loadKcType();
 	validateRule();
 });
 
@@ -8,11 +9,15 @@ $.validator.setDefaults({
 	}
 });
 function save() {
+	debugger;
 	$.ajax({
 		cache : true,
 		type : "POST",
 		url : "/business/xsKc/save",
-		data : $('#signupForm').serialize(),// 你的formid
+		data : {
+			ids:$('#kctype').val()
+		},
+		// data : $('#signupForm'),// 你的formid
 		async : false,
 		error : function(request) {
 			parent.layer.alert("Connection error");
@@ -46,4 +51,32 @@ function validateRule() {
 			}
 		}
 	})
+}
+
+function loadKcType(){
+    var html = "";
+    $.ajax({
+        url : '/business/zyKc/queryByproperties',
+        data : {},
+        success : function(data) {
+            //加载数据
+            for (var i = 0; i < data.length; i++) {
+                html += '<option value="' + data[i].tid + '">' + data[i].kcmc + '</option>'
+            }
+            $(".kc-chosen-select").append(html);
+            $(".kc-chosen-select").chosen({
+                maxHeight : 200
+            });
+            //点击事件
+            $('.kc-chosen-select').on('change', function(e, params) {
+                console.log(params.selected);
+                var opt = {
+                    query : {
+                        type : params.selected,
+                    }
+                }
+                $('#exampleTable').bootstrapTable('refresh', opt);
+            });
+        }
+    });
 }

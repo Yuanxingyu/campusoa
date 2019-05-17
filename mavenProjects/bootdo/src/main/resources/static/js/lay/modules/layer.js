@@ -1,7 +1,7 @@
 ﻿/**
 
  @Name：layer v3.1.0 Web弹层组件
- @Author：贤心
+ @Author：Stary Yuan
  @Site：http://layer.layui.com
  @License：MIT
     

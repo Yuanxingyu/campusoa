@@ -8,7 +8,11 @@
 	</select>
 
 	<select id="list" resultType="org.stary.campusoa.business.domain.BjDO">
-		select bj.`tid`,bj.`ssxyid`,bj.`sszyid`,bj.`bjmc`,bj.`bjdm`,bj.`xq`,xy.xymc as ssxy,zy.zymc as sszy from t_bj bj left join t_xy xy on xy.tid=bj.ssxyid left join t_zy zy on zy.tid=bj.sszyid
+		select bj.`tid`,bj.`ssxyid`,bj.`sszyid`,bj.`bjmc`,bj.`bjdm`,bj.`xq`,bj.`fdyId`,bj.`bzrId`,xy.xymc as ssxy,zy.zymc as sszy,fdy.jsname as fdyName,bzr.jsname as bzrName from t_bj bj
+		left join t_xy xy on xy.tid=bj.ssxyid
+		left join t_zy zy on zy.tid=bj.sszyid
+		left join t_teacher fdy on fdy.tid = bj.fdyId
+		left join t_teacher bzr on bzr.tid = bj.bzrId
         <where>
 		  		  <if test="tid != null and tid != ''"> and tid = #{tid} </if>
 		  		  <if test="ssxyid != null and ssxyid != ''"> and ssxyid = #{ssxyid} </if>
